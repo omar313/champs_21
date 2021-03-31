@@ -1,0 +1,1 @@
+const kServerErrorMsg = 'Sorry! Something went wrong';

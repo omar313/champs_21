@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19.255" height="19.248" viewBox="0 0 19.255 19.248">
+  <g id="Symbol_40_1" data-name="Symbol 40 – 1" transform="translate(0.66 0.5)">
+    <g id="Group_160" data-name="Group 160" transform="translate(0 0)">
+      <g id="Group_159" data-name="Group 159" transform="translate(4.153 3.625)">
+        <path id="Path_397" data-name="Path 397" d="M185.4,59.449a4.948,4.948,0,1,0-8.048,3.856,2.66,2.66,0,0,1,1,2.072v1.653h4.21V65.376a2.652,2.652,0,0,1,.991-2.068A4.938,4.938,0,0,0,185.4,59.449Z" transform="translate(-175.5 -54.5)" fill="#ffcf35"/>
+        <path id="Path_398" data-name="Path 398" d="M255.952,54.527V67.055h2.108V65.4a2.652,2.652,0,0,1,.99-2.068,4.947,4.947,0,0,0-3.1-8.807Z" transform="translate(-251.007 -54.525)" fill="#ffb344"/>
+        <path id="Path_399" data-name="Path 399" d="M226.539,155.421l-1.929-9.03.6-.128,1.328,6.217,1.328-6.217.6.128Z" transform="translate(-221.592 -140.622)" fill="#fff"/>
+        <path id="Path_400" data-name="Path 400" d="M257.884,146.391l-.6-.128-1.328,6.217,0-.014v2.942l0,.014Z" transform="translate(-251.007 -140.622)" fill="#fffbc2"/>
+        <path id="Path_401" data-name="Path 401" d="M223.856,243.012h0a2.106,2.106,0,0,1-2.106-2.107v-1.659h4.212v1.659A2.106,2.106,0,0,1,223.856,243.012Z" transform="translate(-218.907 -227.889)" fill="silver"/>
+        <path id="Path_402" data-name="Path 402" d="M255.952,239.246v3.766h0a2.106,2.106,0,0,0,2.106-2.107v-1.659Z" transform="translate(-251.007 -227.889)" fill="#758f9b"/>
+        <rect id="Rectangle_43" data-name="Rectangle 43" width="4.212" height="0.88" transform="translate(2.843 12.089)" fill="#e0e0e0"/>
+        <rect id="Rectangle_44" data-name="Rectangle 44" width="2.11" height="0.88" transform="translate(4.945 12.089)" fill="silver"/>
+        <rect id="Rectangle_45" data-name="Rectangle 45" width="4.212" height="0.88" transform="translate(2.843 5.265)" fill="#fff"/>
+        <rect id="Rectangle_46" data-name="Rectangle 46" width="2.11" height="0.88" transform="translate(4.945 5.265)" fill="#fffbc2"/>
+      </g>
+      <line id="Line_6" data-name="Line 6" y1="0.748" x2="1.994" transform="translate(15.958 6.983)" fill="none" stroke="#fece34" stroke-linecap="round" stroke-width="1"/>
+      <line id="Line_7" data-name="Line 7" y1="1.994" transform="translate(8.976)" fill="none" stroke="#fece34" stroke-linecap="round" stroke-width="1"/>
+      <line id="Line_8" data-name="Line 8" x1="2.243" y1="0.997" transform="translate(0 6.734)" fill="none" stroke="#fece34" stroke-linecap="round" stroke-width="1"/>
+      <line id="Line_9" data-name="Line 9" y1="1.164" x2="1.217" transform="translate(13.494 2.493)" fill="none" stroke="#fece34" stroke-linecap="round" stroke-width="1"/>
+      <line id="Line_10" data-name="Line 10" x1="1.217" y1="1.164" transform="translate(3.52 2.493)" fill="none" stroke="#fece34" stroke-linecap="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>
