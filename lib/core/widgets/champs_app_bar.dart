@@ -12,6 +12,7 @@ class ChampsAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      brightness: Brightness.light,
       centerTitle: true,
       title: SvgPicture.asset('assets/images/logo.svg', width: 116.24,),
       leading: isShowDrawer ? Material(

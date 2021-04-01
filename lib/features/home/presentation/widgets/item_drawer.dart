@@ -15,26 +15,29 @@ class ItemDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      dense: true,
-      onTap: action,
-      contentPadding: EdgeInsets.zero,
-      horizontalTitleGap: 41,
-      leading: Container(
-        width: 40.7171630859375,
-          height: 32.4508056640625,
-        child: SvgPicture.asset(
-          imagePath,
-          
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: ListTile(
+        dense: true,
+        onTap: action,
+        contentPadding: EdgeInsets.zero,
+        horizontalTitleGap: 41,
+        leading: Container(
+          width: 40.7171630859375,
+            height: 32.4508056640625,
+          child: SvgPicture.asset(
+            imagePath,
+            
+          ),
         ),
+        title: Text(name,
+              style: TextStyle(
+        color: Color(0xff364150),
+        fontSize: fontSize,
+        fontWeight: FontWeight.w600,
+        fontStyle: FontStyle.normal,
+              )),
       ),
-      title: Text(name,
-            style: TextStyle(
-      color: Color(0xff364150),
-      fontSize: fontSize,
-      fontWeight: FontWeight.w600,
-      fontStyle: FontStyle.normal,
-            )),
     );
   }
 }

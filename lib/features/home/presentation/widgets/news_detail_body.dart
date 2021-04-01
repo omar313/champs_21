@@ -77,7 +77,7 @@ class NewsDetailBody extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       DetailHeadLine(
-                        headLine: post.title.rendered,
+                        headLine: post.title,
                       ),
                       NewsMetaInfo(
                           authorName: 'বদরুদ্দোজা মাহমুদ তুহিন',
@@ -92,7 +92,7 @@ class NewsDetailBody extends StatelessWidget {
                       //     fontStyle: FontStyle.normal,
                       //   ),
                       // ),
-                      HtmlText(post.content.rendered),
+                      HtmlText(post.content),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20.0),
                         child: Image.asset(

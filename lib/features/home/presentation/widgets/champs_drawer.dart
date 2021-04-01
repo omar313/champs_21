@@ -1,4 +1,5 @@
 import 'package:champs_21/features/home/domain/entity/category_model.dart';
+import 'package:champs_21/features/home/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:champs_21/features/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,7 +25,7 @@ class ChampsDrawer extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 41.0, right: 10),
+              padding: EdgeInsets.only(left: 41.0, right: 10,top: 10),
               child: Row(
                 children: [
                   SvgPicture.asset(
@@ -45,7 +46,9 @@ class ChampsDrawer extends StatelessWidget {
                           imagePath: categories[position].imagePath,
                           name: categories[position].name,
                           action: () {
+                            context.read<CategoryListCubit>().requestPostsByCategory(position);
                             context.read<HomeBloc>().add(HomeEventTapDrawerCategory(categories[position]));
+                            
                             Navigator.of(context).pop();
                           });
                     }),

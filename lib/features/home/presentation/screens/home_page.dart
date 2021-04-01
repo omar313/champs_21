@@ -1,5 +1,5 @@
+import 'package:champs_21/constants/app_data.dart';
 import 'package:champs_21/core/widgets/champs_app_bar.dart';
-import 'package:champs_21/features/home/domain/repository/home_repository.dart';
 import 'package:champs_21/features/home/presentation/bloc/home_bloc.dart';
 import 'package:champs_21/features/home/presentation/widgets/category_news_body.dart';
 import 'package:champs_21/features/home/presentation/widgets/champs_drawer.dart';
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = di.get<HomeRepository>().getCategories();
+    final categories =  di.get<AppConstantData>().categories;
     return Scaffold(
         appBar: ChampsAppBar(),
         drawer: ChampsDrawer(categories: categories),

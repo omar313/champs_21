@@ -45,7 +45,7 @@ class ItemNews extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -54,7 +54,7 @@ class ItemNews extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: kTextColor,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w900,
                         fontStyle: FontStyle.normal,
                       ),
@@ -62,13 +62,15 @@ class ItemNews extends StatelessWidget {
                     // HtmlText(shortDescription)
                     Text(removeAllHtmlTags(shortDescription),
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
                         maxLines: 2,
                         style: TextStyle(
                           color: kTextColor,
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
-                        ))
+                        )),
+                       
                   ],
                 ),
               ),

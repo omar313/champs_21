@@ -9,10 +9,10 @@ class Post {
   String status;
   String type;
   String link;
-  Guid title;
-  Content content;
+  String title;
+  String content;
   Content excerpt;
-  int author;
+  dynamic author;
   int featuredMedia;
   String commentStatus;
   String pingStatus;
@@ -63,10 +63,34 @@ class Post {
     status = json['status'];
     type = json['type'];
     link = json['link'];
-    featureImage = json['featured_image'];
-    title = json['title'] != null ? new Guid.fromJson(json['title']) : null;
-    content =
-        json['content'] != null ? new Content.fromJson(json['content']) : null;
+    if (json['feature_image'] != null) {
+      featureImage = json['feature_image'];
+    } else if (json['featured_image'] != null) {
+      featureImage = json['featured_image'];
+    }else{
+      featureImage = '';
+    }
+
+    if (json['title'] != null) {
+      if (json['title'] is String) {
+        title = json['title'];
+      } else {
+        title = Guid.fromJson(json['title']).rendered;
+      }
+    } else {
+      title = '';
+    }
+
+    if (json['content'] != null) {
+      if (json['content'] is String) {
+        content = json['content'];
+      } else {
+        content = Content.fromJson(json['content']).rendered;
+      }
+    } else {
+      content = '';
+    }
+
     excerpt =
         json['excerpt'] != null ? new Content.fromJson(json['excerpt']) : null;
     author = json['author'];
@@ -82,8 +106,8 @@ class Post {
     //     meta.add(new String.fromJson(v));
     //   });
     // }
-    categories = json['categories'].cast<int>();
-    tags = json['tags'].cast<int>();
+    // categories = json['categories'].cast<int>();
+    // tags = json['tags'].cast<int>();
     // lLinks = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
   }
 
@@ -102,12 +126,9 @@ class Post {
     data['status'] = this.status;
     data['type'] = this.type;
     data['link'] = this.link;
-    if (this.title != null) {
-      data['title'] = this.title.toJson();
-    }
-    if (this.content != null) {
-      data['content'] = this.content.toJson();
-    }
+    data['title'] = this.title;
+    data['content'] = this.content;
+
     if (this.excerpt != null) {
       data['excerpt'] = this.excerpt.toJson();
     }
@@ -136,7 +157,11 @@ class Guid {
   Guid({this.rendered});
 
   Guid.fromJson(Map<String, dynamic> json) {
-    rendered = json['rendered'];
+    if (json['rendered'] != null)
+      rendered = json['rendered'];
+    else {
+      // rendered = json.keys;
+    }
   }
 
   Map<String, dynamic> toJson() {

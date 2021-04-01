@@ -1,6 +1,7 @@
 import 'package:champs_21/constants/colors.dart';
 import 'package:champs_21/features/home/domain/entity/category_model.dart';
 import 'package:champs_21/features/home/presentation/bloc/categories_button_cubit/categoriesbutton_cubit.dart';
+import 'package:champs_21/features/home/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:champs_21/features/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,10 +18,13 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+     
+      color: Colors.white,
       height: 75,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: ListView.builder(
+          
             itemCount: categories.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, position) {
@@ -31,6 +35,7 @@ class Categories extends StatelessWidget {
                       onTap: (){
                         // context.read<HomeBloc>().add(HomeEventTapCategory(categories[position]));
                         context.read<CategoriesbuttonCubit>().categoriesSelected(position);
+                        context.read<CategoryListCubit>().requestPostsByCategory(position);
                       },
                       child: ItemCategory(
                           isSelected: state.position == position,
@@ -61,16 +66,19 @@ class ItemCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.5),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 85.4720458984375,
-            height: 37.48773193359375,
+            width: size.width / 3.5,
+           
+            height: 45,
             decoration: BoxDecoration(
               color: isSelected ? kHiglightedColor : Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
               boxShadow: [
                 isSelected
                     ? BoxShadow(
@@ -105,7 +113,7 @@ class ItemCategory extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: isSelected ? Color(0xffffffff) : kTextColor,
-                          fontSize: 13,
+                          fontSize: 18,
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
                         )),

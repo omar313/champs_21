@@ -15,7 +15,7 @@ class IndicatorSlider extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+        padding: const EdgeInsets.only( left : 20, right:  20, top: 25,),
         child: Row(
           children: [
             Container(

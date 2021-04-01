@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:champs_21/constants/app_data.dart';
 import 'package:champs_21/features/home/domain/entity/post_model.dart';
 import 'package:champs_21/features/home/domain/repository/home_repository.dart';
 import 'package:champs_21/features/home/presentation/bloc/home_bloc.dart';
@@ -23,7 +24,7 @@ class PicSlider extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 context.read<HomeBloc>().add(HomeEventTapNews(
-                    di.get<HomeRepository>().getCategories()[0],
+                    di.get<AppConstantData>().categories[0],
                     posts[position]));
               },
               child: ClipRRect(
@@ -61,7 +62,7 @@ class PicSlider extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 13.0, vertical: 8),
-                          child: Text(posts[position].title.rendered,
+                          child: Text(posts[position].title,
                               style: TextStyle(
                                 color: Color(0xffffffff),
                                 fontSize: 17,
