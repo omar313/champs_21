@@ -32,44 +32,27 @@ class HomeBody extends StatelessWidget {
 
     return CustomScrollView(
       slivers: [
-        // SliverAppBar(
-
-        //  leading: Container(),
-
-        //   flexibleSpace: Container(
-        //     width: double.infinity,
-        //     child: Column(
-        //         children: [
-        //           PicSlider(
-        //             posts: posts,
-        //           ),
-        //           IndicatorSlider(
-        //             count: posts.length,
-        //           ),
-        //         ],
-        //       ),
-        //   ),
-        //   expandedHeight:  300 ,
-        //     snap: true,
-        //     floating: true,
-        // ),
-        //
         SliverPersistentHeader(
           pinned: false,
           delegate: PersistentHeader(
-              widget:Column(
+              widget: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  PicSlider(
-                    posts: posts,
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.topCenter ,
+                      child: PicSlider(
+                        posts: posts,
+                      ),
+                    ),
                   ),
                   IndicatorSlider(
                     count: posts.length,
                   ),
                 ],
               ),
-              size: size.height * 0.33),
+              size: size.height * 0.32),
         ),
-
         SliverPersistentHeader(
             pinned: true,
             delegate: PersistentHeader(
@@ -80,6 +63,44 @@ class HomeBody extends StatelessWidget {
         NewsListView(),
       ],
     );
+
+    // return NestedScrollView(headerSliverBuilder: (context, isInnerScrolled) {
+    //   return [
+    //     SliverPersistentHeader(
+    //       pinned: false,
+    //       delegate: PersistentHeader(
+    //           widget: Column(
+    //             children: [
+    //               Flexible(
+    //                 child: PicSlider(
+    //                   posts: posts,
+    //                 ),
+    //               ),
+    //               IndicatorSlider(
+    //                 count: posts.length,
+    //               ),
+    //             ],
+    //           ),
+    //           size: size.height * 0.33),
+    //     ),
+    //     SliverOverlapAbsorber(
+    //       handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+    //       sliver: SliverPersistentHeader(
+    //           pinned: true,
+    //           delegate: PersistentHeader(
+    //               widget: Categories(
+    //                 categories: categories,
+    //               ),
+    //               size: 75.0)),
+    //     ),
+    //   ];
+    // }, body: Builder(
+    //   builder: (context) {
+    //     return CustomScrollView(
+    //       slivers: [NewsListView()],
+    //     );
+    //   },
+    // ));
   }
 }
 

@@ -5,6 +5,8 @@ import 'package:champs_21/features/home/presentation/bloc/home_bloc.dart';
 import 'package:champs_21/features/home/presentation/bloc/indicator/indicator_cubit.dart';
 import 'package:champs_21/features/home/presentation/screens/home_page.dart';
 import 'package:champs_21/features/home/presentation/screens/news_detail.dart';
+import 'package:champs_21/features/login/presentation/bloc/login/login_cubit.dart';
+import 'package:champs_21/features/login/presentation/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +16,14 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
+      return MaterialPageRoute(builder: (context) => BlocProvider(  
+        create: (context) {
+          return di.get<LoginCubit>();
+        },
+        child: LoginScreen(),
+      ) );
+
+      case '/dashBoard':
         return MaterialPageRoute(
             builder: (context) => MultiBlocProvider(
                   providers: [
@@ -44,6 +54,8 @@ class AppRouter {
                   categoryModel: model,
                   post: post,
                 ));
+
+
 
       default:
         return null;

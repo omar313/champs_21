@@ -17,11 +17,12 @@ class HomeStateCategoryFullPageLoad extends HomeState {
 }
 
 class HomeStateCategoryLoad extends HomeState {
-  final CategoryModel categoryModel;
+  // final CategoryModel categoryModel;
+   final int position;
 
-  HomeStateCategoryLoad(this.categoryModel);
+  HomeStateCategoryLoad(this.position);
   @override
-  List<Object> get props => [this.categoryModel];
+  List<Object> get props => [this.position];
 }
 
 class HomeStateNewsDetailLoad extends HomeState {

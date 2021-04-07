@@ -1,5 +1,7 @@
 import 'package:champs_21/constants/app_data.dart';
 import 'package:champs_21/core/widgets/champs_app_bar.dart';
+import 'package:champs_21/features/home/presentation/bloc/categories_button_cubit/categoriesbutton_cubit.dart';
+import 'package:champs_21/features/home/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:champs_21/features/home/presentation/bloc/home_bloc.dart';
 import 'package:champs_21/features/home/presentation/widgets/category_news_body.dart';
 import 'package:champs_21/features/home/presentation/widgets/champs_drawer.dart';
@@ -15,7 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories =  di.get<AppConstantData>().categories;
+    final categories = di.get<AppConstantData>().categories;
     return Scaffold(
         appBar: ChampsAppBar(),
         drawer: ChampsDrawer(categories: categories),
@@ -23,7 +25,14 @@ class HomePage extends StatelessWidget {
           listener: (context, state) {
             if (state is HomeStateNewsDetailLoad) {
               Navigator.pushNamed(context, '/detail',
-                  arguments: [state.categoryModel, state.post ]);
+                  arguments: [state.categoryModel, state.post]);
+            } else if (state is HomeStateCategoryLoad) {
+              context
+                  .read<CategoriesbuttonCubit>()
+                  .categoriesSelected(state.position);
+              context
+                  .read<CategoryListCubit>()
+                  .requestPostsByCategory(state.position);
             }
           },
           builder: (context, state) {
@@ -32,7 +41,7 @@ class HomePage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             else if (state is HomeStatePostLoaded) {
-             return HomeBody(
+              return HomeBody(
                 categories: categories,
                 posts: state.posts,
               );
@@ -44,12 +53,13 @@ class HomePage extends StatelessWidget {
               return Center(
                 child: Text(state.error),
               );
-            }else {
+            } else {
               return Container();
             }
           },
           buildWhen: (previous, current) {
-            if (current is HomeStateNewsDetailLoad) return false;
+            if (current is HomeStateNewsDetailLoad ||
+                current is HomeStateCategoryLoad) return false;
             return true;
           },
         ));

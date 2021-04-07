@@ -18,13 +18,11 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-     
       color: Colors.white,
       height: 75,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: ListView.builder(
-          
             itemCount: categories.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, position) {
@@ -32,10 +30,14 @@ class Categories extends StatelessWidget {
                 builder: (context, state) {
                   if (state is CategoriesButtonNewSelectedPosition) {
                     return GestureDetector(
-                      onTap: (){
-                        // context.read<HomeBloc>().add(HomeEventTapCategory(categories[position]));
-                        context.read<CategoriesbuttonCubit>().categoriesSelected(position);
-                        context.read<CategoryListCubit>().requestPostsByCategory(position);
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomeEventTapCategory(position));
+                        // context
+                        //     .read<CategoriesbuttonCubit>()
+                        //     .categoriesSelected(position);
+                        // context
+                        //     .read<CategoryListCubit>()
+                        //     .requestPostsByCategory(position);
                       },
                       child: ItemCategory(
                           isSelected: state.position == position,
@@ -73,8 +75,7 @@ class ItemCategory extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: size.width / 3.5,
-           
+            padding: EdgeInsets.symmetric(horizontal: 10),
             height: 45,
             decoration: BoxDecoration(
               color: isSelected ? kHiglightedColor : Colors.white,
@@ -107,17 +108,15 @@ class ItemCategory extends StatelessWidget {
                   SizedBox(
                     width: 9.4,
                   ),
-                  Flexible(
-                    child: Text(name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: isSelected ? Color(0xffffffff) : kTextColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                        )),
-                  )
+                  Text(name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: isSelected ? Color(0xffffffff) : kTextColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                      ))
                 ],
               ),
             ),

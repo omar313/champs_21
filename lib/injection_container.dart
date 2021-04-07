@@ -10,6 +10,7 @@ import 'package:get_it/get_it.dart';
 
 import 'constants/app_data.dart';
 import 'core/network/api_utlis.dart';
+import 'features/login/presentation/bloc/login/login_cubit.dart';
 
 final di = GetIt.instance;
 
@@ -19,6 +20,7 @@ Future<void> init() async {
   di.registerFactory(() => IndicatorCubit());
   di.registerFactory(() => CategoriesbuttonCubit());
   di.registerLazySingleton(() => CategoryListCubit());
+  di.registerLazySingleton(() => LoginCubit());
 
   // repository
   di.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl());

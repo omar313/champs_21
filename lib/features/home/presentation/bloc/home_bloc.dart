@@ -13,28 +13,34 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetRecentPost getRecentPost;
   HomeBloc(this.getRecentPost) : super(HomeStateInitial());
 
+  List<Post> recentPosts;
+  int selectedCategoryPosition;
+
   @override
   Stream<HomeState> mapEventToState(
     HomeEvent event,
   ) async* {
     if (event is HomeEventInitial) {
       yield HomeStateInitial();
-    try{
-
-        final recentPosts = await  getRecentPost.recentPosts();
-      yield HomeStatePostLoaded(recentPosts);
-
-    }catch(e){
-      yield HomeStateError(e.toString());
-    }
-   
+      try {
+        if (recentPosts == null) {
+          recentPosts = await getRecentPost.recentPosts();
+           yield HomeStatePostLoaded(recentPosts);
+        }else{
+           yield HomeStatePostLoaded(recentPosts);
+          yield HomeStateCategoryLoad(selectedCategoryPosition);
+        }
+       
+       
+      } catch (e) {
+        yield HomeStateError(e.toString());
+      }
     } else if (event is HomeEventTapDrawerCategory) {
       yield HomeStateCategoryFullPageLoad(event.categoryModel);
-    } else if(event is HomeEventTapCategory){
-      
-      yield HomeStateCategoryLoad(event.categoryModel);
-    }
-    else if (event is HomeEventTapNews) {
+    } else if (event is HomeEventTapCategory) {
+      selectedCategoryPosition = event.position;
+      yield HomeStateCategoryLoad(event.position);
+    } else if (event is HomeEventTapNews) {
       yield HomeStateNewsDetailLoad(event.categoryModel, event.post);
     }
   }

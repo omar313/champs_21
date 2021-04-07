@@ -18,11 +18,12 @@ class HomeEventTapDrawerCategory extends HomeEvent{
 }
 
 class HomeEventTapCategory extends HomeEvent{
-  final CategoryModel categoryModel;
+  // final CategoryModel categoryModel;
+  final int position;
 
-  HomeEventTapCategory(this.categoryModel);
+  HomeEventTapCategory(this.position);
   @override
-  List<Object> get props => [this.categoryModel];
+  List<Object> get props => [this.position];
 }
 
 class HomeEventTapNews extends HomeEvent{
