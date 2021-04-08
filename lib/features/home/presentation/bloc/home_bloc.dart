@@ -14,7 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.getRecentPost) : super(HomeStateInitial());
 
   List<Post> recentPosts;
-  int selectedCategoryPosition;
+  int selectedCategoryPosition = 0;
 
   @override
   Stream<HomeState> mapEventToState(

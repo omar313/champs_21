@@ -5,6 +5,7 @@ import 'package:champs_21/core/network/api_utlis.dart';
 import 'package:champs_21/features/home/domain/entity/category_model.dart';
 import 'package:champs_21/features/home/domain/entity/post_model.dart';
 import 'package:champs_21/features/home/domain/repository/home_repository.dart';
+import 'package:dio_http_cache/dio_http_cache.dart';
 
 import '../../../../injection_container.dart';
 
@@ -17,7 +18,7 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<List<Post>> getRecentPost() async{
     final dio =  di.get<ApiUtil>().dio;
-    final response = await dio.get('posts?_embed');
+    final response = await dio.get('posts?_embed', options: buildCacheOptions(Duration(days: 1)));
     print(response.toString());
 
     if(response.statusCode == 200){
@@ -31,9 +32,9 @@ class HomeRepositoryImpl implements HomeRepository {
    
 
   @override
-  Future<List<Post>> getPostByCategory(int id) async{
+  Future<List<Post>> getPostByCategory(int id, int page) async{
     final dio =  di.get<ApiUtil>().dio;
-    final response = await dio.get('categories/$id');
+    final response = await dio.get('categories/$id/$page',options: buildCacheOptions(Duration(days: 1)));
     print(response.toString());
 
     if(response.statusCode == 200){

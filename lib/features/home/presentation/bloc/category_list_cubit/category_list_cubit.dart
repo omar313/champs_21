@@ -12,6 +12,11 @@ part 'category_list_state.dart';
 
 class CategoryListCubit extends Cubit<CategoryListState> {
   final categoriesMap = HashMap<int, List<Post>>();
+  final pageNumberMap = HashMap<int, int>();
+  var currentCategoryID;
+  bool isNewRequestRuning = false;
+  CategoryModel selectedCategory;
+
   final categories = di.get<AppConstantData>().categories;
   CategoryListCubit() : super(CategoryListStateLoading());
 
@@ -19,27 +24,60 @@ class CategoryListCubit extends Cubit<CategoryListState> {
     emit(CategoryListStateLoading());
     try {
       var posts = <Post>[];
-      final id = categories[position].id;
-      if (categoriesMap.containsKey(id)) {
-        posts = categoriesMap[id];
+      currentCategoryID = categories[position].id;
+      selectedCategory = categories[position];
+
+      if (categoriesMap.containsKey(currentCategoryID)) {
+        posts = categoriesMap[currentCategoryID];
       } else {
-        posts = await di.get<GetPostsByCategory>().postByCategory(id);
-        categoriesMap[id] = posts;
+        posts = await di
+            .get<GetPostsByCategory>()
+            .postByCategory(currentCategoryID, 1);
+        pageNumberMap[currentCategoryID] = 1;
+        categoriesMap[currentCategoryID] = posts;
       }
 
-      final tempList = <Post>[];
-      tempList.addAll(posts);
+      // final tempList = <Post>[];
+      // tempList.addAll(posts);
 
-      posts.addAll(tempList);
-      posts.addAll(tempList);
-      posts.addAll(tempList);
-      posts.addAll(tempList);
-      posts.addAll(tempList);
-      posts.addAll(tempList);
+      // posts.addAll(tempList);
+      // posts.addAll(tempList);
+      // posts.addAll(tempList);
+      // posts.addAll(tempList);
+      // posts.addAll(tempList);
+      // posts.addAll(tempList);
 
-      emit(CategoryListStateLoaded(posts));
+      emit(CategoryListStateLoaded(posts,categories[position]));
     } catch (e) {
       emit(CategoryListError(e.toString()));
+    }
+  }
+
+  void requestNewPage() async {
+    if (isNewRequestRuning) {
+      return;
+    }
+
+    print('current category id: $currentCategoryID');
+    var pageNumber = pageNumberMap[currentCategoryID];
+    print('page number $pageNumber');
+    pageNumber = pageNumber + 1;
+
+    try {
+      isNewRequestRuning = true;
+      final newPosts = await di
+          .get<GetPostsByCategory>()
+          .postByCategory(currentCategoryID, pageNumber);
+
+      final posts = categoriesMap[currentCategoryID];
+
+      posts.addAll(newPosts);
+
+      emit(CategoryListStateLoaded(posts, selectedCategory ));
+      isNewRequestRuning = false;
+      pageNumberMap[currentCategoryID] = pageNumber;
+    } catch (e) {
+      isNewRequestRuning = false;
     }
   }
 }

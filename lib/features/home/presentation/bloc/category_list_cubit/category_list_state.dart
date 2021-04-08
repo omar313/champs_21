@@ -1,6 +1,6 @@
 part of 'category_list_cubit.dart';
 
-abstract class CategoryListState extends Equatable {
+abstract class CategoryListState {
   const CategoryListState();
 
   @override
@@ -20,8 +20,9 @@ class CategoryListError extends CategoryListState {
 
 class CategoryListStateLoaded extends CategoryListState{
   final List<Post>  posts;
+  final CategoryModel categoryModel;
 
-  CategoryListStateLoaded(this.posts);
+  CategoryListStateLoaded(this.posts, this.categoryModel);
 
     @override
   List<Object> get props => [this.posts];

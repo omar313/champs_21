@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:champs_21/features/home/domain/entity/post_model.dart';
 import 'package:flutter/material.dart';
 
@@ -42,12 +43,18 @@ class CategoryBodyTopImage extends StatelessWidget {
             ),
           ),
         ),
-        background: Image.network(
-          post.featureImage,
-          height: size.height * 0.27,
-          width: double.infinity,
-          fit: BoxFit.cover,
-        ),
+        background: 
+        // Image.network(
+        //   post.featureImage,
+        //   height: size.height * 0.27,
+        //   width: double.infinity,
+        //   fit: BoxFit.cover,
+        // ),
+        CachedNetworkImage(imageUrl: post.featureImage,
+        height: size.height * 0.27,
+        width: double.infinity,
+        fit: BoxFit.cover,
+        )
       ),
     );
   }

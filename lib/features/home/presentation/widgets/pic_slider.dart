@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:champs_21/constants/app_data.dart';
 import 'package:champs_21/features/home/domain/entity/post_model.dart';
 import 'package:champs_21/features/home/presentation/bloc/home_bloc.dart';
 import 'package:champs_21/features/home/presentation/bloc/indicator/indicator_cubit.dart';
+import 'package:champs_21/features/home/presentation/widgets/pagination_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,9 +49,11 @@ class PicSlider extends StatelessWidget {
                                     spreadRadius: 0)
                               ],
                             ),
-                            child: Image.network(
-                              posts[position].featureImage,
-                              fit: BoxFit.cover,
+                            child: CachedNetworkImage(imageUrl: posts[position].featureImage,
+                            placeholder: (context,url){
+                              return Center(child: PaginationLoader(),);
+                            } , errorWidget:(_,__,___) => Icon(Icons.error),
+                            fit: BoxFit.cover,
                             ),
                             // child: Image.asset('assets/images/cover_pic.png',
                             // fit: BoxFit.cover,),

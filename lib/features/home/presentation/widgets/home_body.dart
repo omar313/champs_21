@@ -1,13 +1,15 @@
 import 'package:champs_21/features/home/domain/entity/category_model.dart';
 import 'package:champs_21/features/home/domain/entity/post_model.dart';
+import 'package:champs_21/features/home/presentation/bloc/category_list_cubit/category_list_cubit.dart';
 import 'package:champs_21/features/home/presentation/widgets/pic_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'categories.dart';
 import 'indicator_slider.dart';
 import 'news_list_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   const HomeBody({
     Key key,
     @required this.categories,
@@ -16,6 +18,31 @@ class HomeBody extends StatelessWidget {
 
   final List<CategoryModel> categories;
   final List<Post> posts;
+
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  final _scrollController = ScrollController();
+  @override
+  void initState() { 
+    super.initState();
+     _scrollController.addListener(() {
+    if(_scrollController.position.atEdge){
+      if(_scrollController.position.pixels != 0){
+        context.read<CategoryListCubit>().requestNewPage();
+      }
+    }
+  });
+    
+  }
+
+@override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +58,7 @@ class HomeBody extends StatelessWidget {
     // );
 
     return CustomScrollView(
+      controller: _scrollController,
       slivers: [
         SliverPersistentHeader(
           pinned: false,
@@ -42,12 +70,12 @@ class HomeBody extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topCenter ,
                       child: PicSlider(
-                        posts: posts,
+                        posts: widget.posts,
                       ),
                     ),
                   ),
                   IndicatorSlider(
-                    count: posts.length,
+                    count: widget.posts.length,
                   ),
                 ],
               ),
@@ -57,7 +85,7 @@ class HomeBody extends StatelessWidget {
             pinned: true,
             delegate: PersistentHeader(
                 widget: Categories(
-                  categories: categories,
+                  categories: widget.categories,
                 ),
                 size: 75.0)),
         NewsListView(),

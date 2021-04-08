@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:champs_21/constants/app_data.dart';
 import 'package:champs_21/constants/colors.dart';
 import 'package:champs_21/core/widgets/html_text.dart';
@@ -44,14 +45,19 @@ class NewsDetailBody extends StatelessWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   titlePadding: EdgeInsets.zero,
                   background: Hero(
-                    tag: post.featureImage,
-                    child: Image.network(
-                      post.featureImage,
-                      height: size.height * 0.27,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                      tag: post.featureImage,
+                      child:
+                          //  Image.network(
+                          //   post.featureImage,
+                          //   height: size.height * 0.27,
+                          //   width: double.infinity,
+                          //   fit: BoxFit.cover,
+                          // ),
+                          CachedNetworkImage(
+                        imageUrl: post.featureImage,
+                        height: size.height * 0.27,
+                         errorWidget: (_, __, ___) => Icon(Icons.error),
+                      )),
                 ),
               ),
               // SliverFillRemaining(
@@ -80,8 +86,8 @@ class NewsDetailBody extends StatelessWidget {
                         headLine: post.title,
                       ),
                       NewsMetaInfo(
-                          authorName: 'বদরুদ্দোজা মাহমুদ তুহিন',
-                          date: 'জানুয়ারি ১৪, ২০১৮',
+                          authorName: '${post.author}',
+                          date: '${post.date}',
                           totalViewText: '1853'),
                       // Text(
                       //   kDemoText,
