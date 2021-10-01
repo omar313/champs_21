@@ -14,6 +14,7 @@ class ChampsAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       brightness: Brightness.light,
       centerTitle: true,
+      backgroundColor: Colors.white,
       title: SvgPicture.asset('assets/images/logo.svg', width: 116.24,),
       leading: isShowDrawer ? Material(
         shape: CircleBorder(),

@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'BanglaSagar',
-      
+        scaffoldBackgroundColor: Colors.white,
         primaryColor: kPrimaryColor,
-        primarySwatch: Colors.blue,
+      //  primarySwatch: Colors.blue,
         iconTheme: IconThemeData(color: kHiglightedColor )
         
       ),
