@@ -15,7 +15,7 @@ import '../injection_container.dart';
 class AppRouter {
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
+      case '/login':
       return MaterialPageRoute(builder: (context) => BlocProvider(  
         create: (context) {
           return di.get<LoginCubit>();
@@ -23,7 +23,7 @@ class AppRouter {
         child: LoginScreen(),
       ) );
 
-      case '/dashBoard':
+      case '/':
         return MaterialPageRoute(
             builder: (context) => MultiBlocProvider(
                   providers: [
